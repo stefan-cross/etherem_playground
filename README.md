@@ -10,6 +10,9 @@ Use local files in Remix IDE
 
 Tutorial Progress:
 
+
+https://imti.co/ethereum-kubernetes/
+
 https://medium.com/@pradeep_thomas/how-to-setup-your-own-private-ethereum-network-f80bc6aea088
 
 https://learning.oreilly.com/videos/solidity-smart-contracts/9781838989231/9781838989231-video1_3/
