@@ -8,8 +8,23 @@ Use local files in Remix IDE
 
 ```remixd -s .  --remix-ide https://remix.ethereum.org```
 
-Tutorial Progress:
+Client:
 
+```bash
+cd client
+npm install -g truffle@5.0.2
+truffle -version
+truffle init
+truffle compile
+truffle migration --reset
+truffle console
+npm install light-server
+npm run dev
+history | tail -10 | cut -c 8-200
+
+```
+
+Tutorial Progress:
 
 https://imti.co/ethereum-kubernetes/
 
