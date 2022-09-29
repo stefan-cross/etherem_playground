@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { ethers } from 'ethers'   // acts like a backend for our Web3/DApp 
 import Greeter from './contracts/Greeter.sol/Greeter.json'
@@ -6,7 +6,8 @@ import Greeter from './contracts/Greeter.sol/Greeter.json'
 const greeterAddress = '0xdc64a140aa3e981100a9beca4e685f962f0cf6c9'
 
 function App() {
-  const [greeting, setGreetingValue] = useState<string | null>(null);
+  const [greeting, setGreetingValue] = useState<string>("");
+
 
  async function requestAccount() {
   await window.ethereum?.request({ method: 'eth_requestAccounts' });
@@ -20,6 +21,7 @@ function App() {
     try {
       const data = await contract.greet()
       console.log('data: ', data)
+      setGreetingValue(data)
     } catch (err) {
       console.log("Error: ", err)
     }
@@ -34,7 +36,7 @@ async function setGreeting() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
     const contract = new ethers.Contract(greeterAddress, Greeter.abi, signer)
-    const transaction = await contract.setGreeting(greeting)
+    const transaction = await contract.setGreeter(greeting)
     await transaction.wait()
     fetchGreeting()
   }
@@ -46,6 +48,7 @@ return (
       <button onClick={fetchGreeting}>Fetch Greeting</button>
       <button onClick={setGreeting}>Set Greeting</button>
       <input onChange={e => setGreetingValue(e.target.value)} placeholder="Set greeting" />
+      <p>Greeting set as: <code>{greeting}</code></p>
     </header>
   </div>
 );
